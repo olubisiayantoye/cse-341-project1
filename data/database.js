@@ -5,13 +5,19 @@ const { MongoClient } = require('mongodb');
 let client;
 let db;
 
+
+
+
 const initDb = async () => {
   try {
     const uri = process.env.MONGODB_URI;
     if (!uri) throw new Error('MONGODB_URI not found in .env');
     
-    // Updated connection without deprecated options
-    client = new MongoClient(uri);
+    client = new MongoClient(uri, {
+      tls: true,
+      tlsAllowInvalidCertificates: false, // Set to true only for testing if needed
+      serverSelectionTimeoutMS: 5000
+    });
     
     await client.connect();
     db = client.db(process.env.DB_NAME || 'professionalDB');
@@ -22,6 +28,8 @@ const initDb = async () => {
     process.exit(1);
   }
 };
+
+// ... rest of the file remains the same
 
 const getDb = () => {
   if (!db) throw new Error('Database not initialized!');
