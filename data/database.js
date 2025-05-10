@@ -29,7 +29,7 @@ const initDb = async () => {
   }
 };
 
-// ... rest of the file remains the same
+
 
 const getDb = () => {
   if (!db) throw new Error('Database not initialized!');
