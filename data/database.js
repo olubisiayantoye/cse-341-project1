@@ -14,9 +14,8 @@ const initDb = async () => {
     if (!uri) throw new Error('MONGODB_URI not found in .env');
     
     client = new MongoClient(uri, {
-      tls: true,
-      tlsAllowInvalidCertificates: false, // Set to true only for testing if needed
-      serverSelectionTimeoutMS: 50000
+         tls: true,
+        tlsAllowInvalidCertificates: false,
     });
     
     await client.connect();
