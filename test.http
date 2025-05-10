@@ -1,0 +1,7 @@
+GET    http://localhost:8080/contacts
+POST   http://localhost:8080/contacts
+GET    http://localhost:8080/contacts/:id
+PUT    http://localhost:8080/contacts/:id
+DELETE http://localhost:8080/contacts/:id
+
+GET http://localhost:8080/contacts/681f58751a648b719e4c5723
