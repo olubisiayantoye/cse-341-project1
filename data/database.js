@@ -10,10 +10,8 @@ const initDb = async () => {
     const uri = process.env.MONGODB_URI;
     if (!uri) throw new Error('MONGODB_URI not found in .env');
     
-    client = new MongoClient(uri, { 
-      useNewUrlParser: true, 
-      useUnifiedTopology: true 
-    });
+    // Updated connection without deprecated options
+    client = new MongoClient(uri);
     
     await client.connect();
     db = client.db(process.env.DB_NAME || 'professionalDB');
