@@ -1,5 +1,6 @@
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const fs = require('fs');
 
 const PORT = process.env.PORT || 8080;
 
@@ -26,6 +27,10 @@ const options = {
 
 const swaggerSpec = swaggerJsDoc(options);
 
+// ✅ Save Swagger JSON to file
+fs.writeFileSync('./swagger-output.json', JSON.stringify(swaggerSpec, null, 2));
+
+
 function setupSwagger(app) {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   app.get('/swagger.json', (req, res) => {
@@ -33,5 +38,8 @@ function setupSwagger(app) {
     res.send(swaggerSpec);
   });
 }
+
+
+
 
 module.exports = setupSwagger;
