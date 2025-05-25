@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const { initDb } = require('./data/database');
 const contactsRouter = require('./routes/contacts');
+const setupSwagger = require('./swagger');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -17,6 +18,9 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
 });
+
+setupSwagger(app);
+
 
 // Initialize database and start server
 initDb().then(() => {
