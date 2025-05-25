@@ -12,10 +12,14 @@ const options = {
       description: 'CSE-341-project contact management API using Express',
     },
     servers: [
-      {
-        url: `http://localhost:${PORT}`,
-      },
-    ],
+  {
+    url: `http://localhost:${PORT}`,
+  },
+  {
+    url: 'https://cse-341-project1-izio.onrender.com',
+  }
+],
+    
   },
   apis: ['./routes/*.js'],
 };
